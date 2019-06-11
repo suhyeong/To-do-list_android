@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    tools:ignore="MissingPrefix">
+
+    <com.ssomai.android.scalablelayout.ScalableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints"
+        app:scale_base_width="1080"
+        app:scale_base_height="1920">
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/mainheader"
+            app:scale_width="1080"
+            app:scale_height="350"/>
+
+        <TextView
+            android:id="@+id/today_weekday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:text="Wednesday,"
+            android:fontFamily="sans-serif-thin"
+            android:textColor="#556fb5"
+            app:scale_textsize="90"
+            app:scale_width="550"
+            app:textview_wrapcontent_direction="bottom"
+            app:textview_wrapcontent_resizesurrounded="true"
+            app:textview_wrapcontent_movesiblings="true"
+            app:scale_top="80"
+            app:scale_left="60"/>
+
+        <TextView
+            android:id="@+id/today_day"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/today_weekday"
+            android:fontFamily="sans-serif-light"
+            android:text="10th"
+            android:textColor="#556fb5"
+            app:scale_left="530"
+            app:scale_textsize="90"
+            app:scale_top="80"
+            app:scale_width="220"
+            app:textview_wrapcontent_direction="bottom"
+            app:textview_wrapcontent_movesiblings="true"
+            app:textview_wrapcontent_resizesurrounded="true" />
+
+        <TextView
+            android:id="@+id/today_month"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="December"
+            android:fontFamily="sans-serif-light"
+            android:textColor="#AAAAAA"
+            app:scale_textsize="60"
+            app:scale_width="300"
+            app:textview_wrapcontent_direction="bottom"
+            app:textview_wrapcontent_resizesurrounded="true"
+            app:textview_wrapcontent_movesiblings="true"
+            app:scale_top="180"
+            app:scale_left="60"/>
+
+        <TextView
+            android:id="@+id/todolist_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="12 Tasks"
+            android:fontFamily="sans-serif-light"
+            android:textColor="#AAAAAA"
+            app:scale_textsize="50"
+            app:scale_width="220"
+            app:textview_wrapcontent_direction="bottom"
+            app:textview_wrapcontent_resizesurrounded="true"
+            app:textview_wrapcontent_movesiblings="true"
+            app:scale_top="140"
+            app:scale_left="820"/>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/add_list"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#e4508f"
+            app:borderWidth="0dp"
+            app:elevation="0dp"
+            app:scale_width="220"
+            app:scale_height="170"
+            app:scale_left="850"
+            app:scale_top="310"/>
+
+        <ListView
+            android:id="@+id/to_do_list"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:scale_width="1080"
+            app:scale_height="1920"
+            app:scale_top="400" />
+
+    </com.ssomai.android.scalablelayout.ScalableLayout>
+
+</android.support.constraint.ConstraintLayout>
