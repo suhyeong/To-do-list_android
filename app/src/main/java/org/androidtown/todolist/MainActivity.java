@@ -1,9 +1,14 @@
 package org.androidtown.todolist;
 
+import android.graphics.Typeface;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Spannable;
+import android.text.SpannableStringBuilder;
+import android.text.Spanned;
+import android.text.style.StyleSpan;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -16,7 +21,7 @@ import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
-    TextView today_weekday, today_day, today_month, todolist_count;
+    TextView today_weekday, today_month, todolist_count;
     ListView to_do_list;
 
     @Override
@@ -35,13 +40,19 @@ public class MainActivity extends AppCompatActivity {
 
         to_do_list = findViewById(R.id.to_do_list);
         today_weekday = findViewById(R.id.today_weekday);
-        today_day = findViewById(R.id.today_day);
         today_month = findViewById(R.id.today_month);
         todolist_count = findViewById(R.id.todolist_count);
-        today_weekday.setText(getWeekday(weekday));
-        today_day.setText(getDay(day));
         today_month.setText(getMonth(month));
-        todolist_count.setText(to_do_list.getChildCount()+" Tasks");
+
+        String todolistcount_str = to_do_list.getChildCount()+" Tasks";
+        SpannableStringBuilder spannableStringBuilder_ = new SpannableStringBuilder(todolistcount_str);
+        spannableStringBuilder_.setSpan(new StyleSpan(Typeface.BOLD), 0, todolistcount_str.indexOf(" "), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        todolist_count.setText(spannableStringBuilder_);
+
+        String weekdayNday = getWeekday(weekday).concat(" "+getDay(day));
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(weekdayNday);
+        spannableStringBuilder.setSpan(new StyleSpan(Typeface.BOLD), 0, weekdayNday.indexOf(",")+1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        today_weekday.setText(spannableStringBuilder);
 
         FloatingActionButton floatingActionButton = findViewById(R.id.add_list);
         floatingActionButton.setOnClickListener(new View.OnClickListener() {

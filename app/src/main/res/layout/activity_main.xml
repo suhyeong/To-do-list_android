@@ -25,33 +25,16 @@
             android:id="@+id/today_weekday"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:text="Wednesday,"
+            android:text="Wednesday, 10th"
             android:fontFamily="sans-serif-thin"
             android:textColor="#556fb5"
             app:scale_textsize="90"
-            app:scale_width="550"
+            app:scale_width="750"
             app:textview_wrapcontent_direction="bottom"
             app:textview_wrapcontent_resizesurrounded="true"
             app:textview_wrapcontent_movesiblings="true"
-            app:scale_top="80"
+            app:scale_top="65"
             app:scale_left="60"/>
-
-        <TextView
-            android:id="@+id/today_day"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/today_weekday"
-            android:fontFamily="sans-serif-light"
-            android:text="10th"
-            android:textColor="#556fb5"
-            app:scale_left="530"
-            app:scale_textsize="90"
-            app:scale_top="80"
-            app:scale_width="220"
-            app:textview_wrapcontent_direction="bottom"
-            app:textview_wrapcontent_movesiblings="true"
-            app:textview_wrapcontent_resizesurrounded="true" />
 
         <TextView
             android:id="@+id/today_month"
@@ -60,13 +43,13 @@
             android:text="December"
             android:fontFamily="sans-serif-light"
             android:textColor="#AAAAAA"
-            app:scale_textsize="60"
+            app:scale_textsize="55"
             app:scale_width="300"
             app:textview_wrapcontent_direction="bottom"
             app:textview_wrapcontent_resizesurrounded="true"
             app:textview_wrapcontent_movesiblings="true"
-            app:scale_top="180"
-            app:scale_left="60"/>
+            app:scale_top="165"
+            app:scale_left="70"/>
 
         <TextView
             android:id="@+id/todolist_count"
@@ -75,12 +58,12 @@
             android:text="12 Tasks"
             android:fontFamily="sans-serif-light"
             android:textColor="#AAAAAA"
-            app:scale_textsize="50"
-            app:scale_width="220"
+            app:scale_textsize="55"
+            app:scale_width="230"
             app:textview_wrapcontent_direction="bottom"
             app:textview_wrapcontent_resizesurrounded="true"
             app:textview_wrapcontent_movesiblings="true"
-            app:scale_top="140"
+            app:scale_top="110"
             app:scale_left="820"/>
 
         <android.support.design.widget.FloatingActionButton
@@ -92,8 +75,8 @@
             app:elevation="0dp"
             app:scale_width="220"
             app:scale_height="170"
-            app:scale_left="850"
-            app:scale_top="310"/>
+            app:scale_left="830"
+            app:scale_top="260"/>
 
         <ListView
             android:id="@+id/to_do_list"
