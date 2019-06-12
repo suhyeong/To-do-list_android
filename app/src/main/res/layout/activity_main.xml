@@ -67,10 +67,11 @@
             app:scale_left="820"/>
 
         <android.support.design.widget.FloatingActionButton
-            android:id="@+id/add_list"
+            android:id="@+id/open_menu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="#e4508f"
+            android:src="@drawable/ic_arrow_drop_down_white_24dp"
             app:borderWidth="0dp"
             app:elevation="0dp"
             app:scale_width="220"
@@ -78,6 +79,33 @@
             app:scale_left="830"
             app:scale_top="260"/>
 
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/add_list"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#ffc4d0"
+            android:src="@drawable/ic_add_white_24dp"
+            android:visibility="invisible"
+            app:borderWidth="0dp"
+            app:elevation="2dp"
+            app:scale_width="200"
+            app:scale_height="150"
+            app:scale_left="830"
+            app:scale_top="500"/>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/complete_list"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#ffc4d0"
+            android:src="@drawable/ic_list_white_24dp"
+            android:visibility="invisible"
+            app:borderWidth="0dp"
+            app:elevation="2dp"
+            app:scale_width="200"
+            app:scale_height="150"
+            app:scale_left="830"
+            app:scale_top="720"/>
         <ListView
             android:id="@+id/to_do_list"
             android:layout_width="wrap_content"

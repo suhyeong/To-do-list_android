@@ -10,6 +10,8 @@ import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.style.StyleSpan;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,10 +21,14 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     TextView today_weekday, today_month, todolist_count;
     ListView to_do_list;
+    FloatingActionButton open_menu, add_list, complete_list;
+
+    private Animation fab_open, fab_close, rotate_dropdown, rotate_dropup;
+    private boolean isFabOpen = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,13 +60,17 @@ public class MainActivity extends AppCompatActivity {
         spannableStringBuilder.setSpan(new StyleSpan(Typeface.BOLD), 0, weekdayNday.indexOf(",")+1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         today_weekday.setText(spannableStringBuilder);
 
-        FloatingActionButton floatingActionButton = findViewById(R.id.add_list);
-        floatingActionButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "click", Toast.LENGTH_SHORT).show();
-            }
-        });
+        open_menu = findViewById(R.id.open_menu);
+        add_list = findViewById(R.id.add_list);
+        complete_list = findViewById(R.id.complete_list);
+        open_menu.setOnClickListener(this);
+        add_list.setOnClickListener(this);
+        complete_list.setOnClickListener(this);
+
+        fab_open = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_open);
+        fab_close = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_close);
+        rotate_dropdown = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.rotate_dropdown);
+        rotate_dropup = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.rotate_dropup);
 
     }
 
@@ -162,5 +172,38 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return result;
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.open_menu:
+                toggleFab();
+                break;
+            case R.id.add_list:
+                toggleFab();
+                break;
+            case R.id.complete_list:
+                toggleFab();
+                break;
+        }
+    }
+
+    private void toggleFab() {
+        if(isFabOpen) {
+            open_menu.startAnimation(rotate_dropup);
+            add_list.startAnimation(fab_close);
+            complete_list.startAnimation(fab_close);
+            add_list.setClickable(false);
+            complete_list.setClickable(false);
+            isFabOpen = false;
+        } else {
+            open_menu.startAnimation(rotate_dropdown);
+            add_list.startAnimation(fab_open);
+            complete_list.startAnimation(fab_open);
+            add_list.setClickable(true);
+            complete_list.setClickable(true);
+            isFabOpen = true;
+        }
     }
 }
