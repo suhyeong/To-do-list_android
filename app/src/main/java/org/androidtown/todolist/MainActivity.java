@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     TextView today_weekday, today_month, todolist_count;
     ListView to_do_list;
+    ListViewAdapter listViewAdapter;
     FloatingActionButton open_menu, add_list, complete_list;
 
     private Animation fab_open, fab_close, rotate_dropdown, rotate_dropup;
@@ -45,12 +46,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         String month = monthformat.format(todayTime);
 
         to_do_list = findViewById(R.id.to_do_list);
+        listViewAdapter = new ListViewAdapter();
+        to_do_list.setAdapter(listViewAdapter);
         today_weekday = findViewById(R.id.today_weekday);
         today_month = findViewById(R.id.today_month);
         todolist_count = findViewById(R.id.todolist_count);
         today_month.setText(getMonth(month));
 
-        String todolistcount_str = to_do_list.getChildCount()+" Tasks";
+        listViewAdapter.addItem("졸업작품 PPT 제출","10:00 AM");
+        listViewAdapter.addItem("과제 제출","04:00 PM");
+
+        String todolistcount_str = listViewAdapter.getCount()+" Tasks";
         SpannableStringBuilder spannableStringBuilder_ = new SpannableStringBuilder(todolistcount_str);
         spannableStringBuilder_.setSpan(new StyleSpan(Typeface.BOLD), 0, todolistcount_str.indexOf(" "), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         todolist_count.setText(spannableStringBuilder_);
