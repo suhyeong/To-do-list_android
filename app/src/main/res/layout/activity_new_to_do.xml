@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".NewToDoActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/new_to_do_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/transparency"
+        tools:ignore="MissingConstraints">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New"
+            android:textColor="@color/mainblue"
+            android:layout_gravity="center"
+            android:textSize="22sp"/>
+    </android.support.v7.widget.Toolbar>
+
+    <com.ssomai.android.scalablelayout.ScalableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints"
+        app:scale_base_width="1080"
+        app:scale_base_height="1920">
+
+        <com.prolificinteractive.materialcalendarview.MaterialCalendarView
+            android:id="@+id/to_do_calendar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            app:scale_top="170"
+            app:scale_width="1080"
+            app:scale_height="1000"
+            app:mcv_showOtherDates="other_months"
+            app:mcv_selectionColor="@color/mainblue"
+            app:mcv_titleAnimationOrientation="horizontal"
+            app:mcv_leftArrowMask="@drawable/ic_navigate_before_gray_24dp"
+            app:mcv_rightArrowMask="@drawable/ic_navigate_next_gray_24dp"
+            app:mcv_arrowColor="#AAAAAA"
+            app:mcv_tileSize="match_parent"
+            app:mcv_firstDayOfWeek="monday"/>
+
+    </com.ssomai.android.scalablelayout.ScalableLayout>
+
+</android.support.constraint.ConstraintLayout>

@@ -1,5 +1,6 @@
 package org.androidtown.todolist;
 
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -188,6 +189,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.add_list:
                 toggleFab();
+                Intent intent = new Intent(this, NewToDoActivity.class);
+                startActivity(intent);
                 break;
             case R.id.complete_list:
                 toggleFab();

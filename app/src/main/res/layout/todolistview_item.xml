@@ -19,6 +19,7 @@
             android:id="@+id/list_checkbox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:theme="@style/AppTheme"
             app:scale_top="50"
             app:scale_left="50"/>
 
@@ -35,16 +36,30 @@
             app:scale_textsize="47" />
 
         <TextView
-            android:id="@+id/to_do_list_time_text"
+        android:id="@+id/to_do_list_time_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="11:00 AM"
+        android:textColor="#AAAAAA"
+        app:scale_left="840"
+        app:scale_textsize="45"
+        app:scale_top="35"
+        app:scale_width="220"
+        app:scale_height="70" />
+
+        <TextView
+            android:id="@+id/to_do_list_d-day_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:text="11:00 AM"
+            android:gravity="center"
+            android:text="D-10"
             android:textColor="#AAAAAA"
             app:scale_left="840"
-            app:scale_textsize="47"
-            app:scale_top="50"
-            app:scale_width="220" />
+            app:scale_textsize="45"
+            app:scale_top="105"
+            app:scale_width="220"
+            app:scale_height="65" />
     </com.ssomai.android.scalablelayout.ScalableLayout>
 
 </android.support.constraint.ConstraintLayout>

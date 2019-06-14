@@ -72,7 +72,7 @@
             android:layout_height="wrap_content"
             app:scale_width="1080"
             app:scale_height="1920"
-            app:scale_top="400" />
+            app:scale_top="420" />
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/open_menu"
