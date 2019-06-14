@@ -24,7 +24,7 @@ import java.util.Calendar;
 import java.util.Locale;
 
 
-public class NewToDoActivity extends AppCompatActivity implements OnDateSelectedListener, OnMonthChangedListener {
+public class NewToDoActivity extends AppCompatActivity implements OnDateSelectedListener {
 
     Toolbar toolbar;
     MaterialCalendarView materialCalendarView;
@@ -41,14 +41,15 @@ public class NewToDoActivity extends AppCompatActivity implements OnDateSelected
 
         materialCalendarView = findViewById(R.id.to_do_calendar);
         materialCalendarView.setOnDateChangedListener(this);
-        materialCalendarView.setOnMonthChangedListener(this);
         materialCalendarView.setTopbarVisible(true);
+
+        CharSequence[] charSequences = new CharSequence[]{"SUN","MON","TUE","WED","THE","FRI","SAT"};
+        materialCalendarView.setWeekDayLabels(charSequences);
 
         SimpleDateFormat title_simpleDateFormat = new SimpleDateFormat("MMMM yyyy", Locale.ENGLISH);
         DateFormatTitleFormatter dateFormatTitleFormatter = new DateFormatTitleFormatter(title_simpleDateFormat);
         materialCalendarView.setTitleFormatter(dateFormatTitleFormatter);
 
-        CalendarWeekDayFormatter calendarWeekDayFormatter = new CalendarWeekDayFormatter();
     }
 
     @Override
@@ -64,7 +65,6 @@ public class NewToDoActivity extends AppCompatActivity implements OnDateSelected
                 finish();
                 return true;
             case R.id.new_done:
-                Snackbar.make(toolbar, "New TO DO LIST ADD !", Snackbar.LENGTH_SHORT).show();
                 finish();
                 return true;
         }
@@ -73,11 +73,6 @@ public class NewToDoActivity extends AppCompatActivity implements OnDateSelected
 
     @Override
     public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
-
-    }
-
-    @Override
-    public void onMonthChanged(MaterialCalendarView widget, CalendarDay date) {
 
     }
 }

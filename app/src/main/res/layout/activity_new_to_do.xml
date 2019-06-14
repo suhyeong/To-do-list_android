@@ -5,7 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".NewToDoActivity">
+    tools:context=".NewToDoActivity"
+    tools:ignore="MissingPrefix">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/new_to_do_toolbar"
@@ -30,12 +31,36 @@
         app:scale_base_width="1080"
         app:scale_base_height="1920">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TO DO"
+            android:textColor="@color/mainblue"
+            android:gravity="center"
+            app:scale_top="200"
+            app:scale_left="50"
+            app:scale_width="200"
+            app:scale_height="100"
+            app:scale_textsize="55"/>
+
+        <EditText
+            android:id="@+id/user_to_do_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/transparency"
+            android:textColor="#777777"
+            app:scale_width="740"
+            app:scale_height="110"
+            app:scale_top="200"
+            app:scale_left="280"
+            app:scale_textsize="45"/>
+
         <com.prolificinteractive.materialcalendarview.MaterialCalendarView
             android:id="@+id/to_do_calendar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            app:scale_top="170"
+            app:scale_top="340"
             app:scale_width="1080"
             app:scale_height="1000"
             app:mcv_showOtherDates="other_months"
@@ -46,6 +71,16 @@
             app:mcv_arrowColor="#AAAAAA"
             app:mcv_tileSize="match_parent"
             app:mcv_firstDayOfWeek="monday"/>
+
+        <TimePicker
+            android:id="@+id/to_do_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:timePickerMode="spinner"
+            app:scale_width="1080"
+            app:scale_height="300"
+            app:scale_top="1350"/>
 
     </com.ssomai.android.scalablelayout.ScalableLayout>
 
