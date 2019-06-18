@@ -5,7 +5,7 @@ import android.widget.TextView;
 
 public class ListViewItem {
     private CheckBox to_do_list_checkbox;
-    private String to_do_list, to_do_list_time;
+    private String to_do_list, to_do_list_time, to_do_list_date;
 
     public void setTo_do_list_checkbox(CheckBox to_do_list_checkbox) {
         this.to_do_list_checkbox = to_do_list_checkbox;
@@ -19,6 +19,10 @@ public class ListViewItem {
         this.to_do_list_time = to_do_list_time;
     }
 
+    public void setTo_do_list_date(String to_do_list_date) {
+        this.to_do_list_date = to_do_list_date;
+    }
+
     public CheckBox getTo_do_list_checkbox() {
         return this.to_do_list_checkbox;
     }
@@ -30,4 +34,6 @@ public class ListViewItem {
     public String getTo_do_list_time() {
         return this.to_do_list_time;
     }
+
+    public String getTo_do_list_date() { return this.to_do_list_date; }
 }

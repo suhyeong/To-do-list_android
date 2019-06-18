@@ -1,5 +1,6 @@
 package org.androidtown.todolist;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -7,6 +8,9 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
+import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
@@ -21,13 +25,17 @@ import java.lang.reflect.Array;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
 
 
-public class NewToDoActivity extends AppCompatActivity implements OnDateSelectedListener {
+public class NewToDoActivity extends AppCompatActivity implements TimePicker.OnTimeChangedListener {
 
     Toolbar toolbar;
+    EditText to_do_text;
     MaterialCalendarView materialCalendarView;
+    TimePicker timePicker;
+    String text, date, time;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,8 +47,9 @@ public class NewToDoActivity extends AppCompatActivity implements OnDateSelected
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        to_do_text = findViewById(R.id.user_to_do_text);
+
         materialCalendarView = findViewById(R.id.to_do_calendar);
-        materialCalendarView.setOnDateChangedListener(this);
         materialCalendarView.setTopbarVisible(true);
 
         CharSequence[] charSequences = new CharSequence[]{"SUN","MON","TUE","WED","THE","FRI","SAT"};
@@ -50,6 +59,8 @@ public class NewToDoActivity extends AppCompatActivity implements OnDateSelected
         DateFormatTitleFormatter dateFormatTitleFormatter = new DateFormatTitleFormatter(title_simpleDateFormat);
         materialCalendarView.setTitleFormatter(dateFormatTitleFormatter);
 
+        timePicker = findViewById(R.id.to_do_time);
+        timePicker.setOnTimeChangedListener(this);
     }
 
     @Override
@@ -65,6 +76,15 @@ public class NewToDoActivity extends AppCompatActivity implements OnDateSelected
                 finish();
                 return true;
             case R.id.new_done:
+                text = to_do_text.getText().toString();
+                Date date_ = materialCalendarView.getSelectedDate().getDate();
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                date = simpleDateFormat.format(date_);
+                Intent resultIntent = new Intent();
+                resultIntent.putExtra("todolist_text", text);
+                resultIntent.putExtra("todolist_time", time);
+                resultIntent.putExtra("todolist_date", date);
+                setResult(RESULT_OK, resultIntent);
                 finish();
                 return true;
         }
@@ -72,7 +92,7 @@ public class NewToDoActivity extends AppCompatActivity implements OnDateSelected
     }
 
     @Override
-    public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
-
+    public void onTimeChanged(TimePicker view, int hourOfDay, int minute) {
+        time = String.valueOf(hourOfDay)+":"+String.valueOf(minute);
     }
 }

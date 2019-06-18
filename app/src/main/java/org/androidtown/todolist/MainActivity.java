@@ -28,9 +28,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     ListView to_do_list;
     ListViewAdapter listViewAdapter;
     FloatingActionButton open_menu, add_list, complete_list;
+    String todayDate, diffDays_result;
 
     private Animation fab_open, fab_close, rotate_dropdown, rotate_dropup;
     private boolean isFabOpen = false;
+
+    String todolist_text, todolist_time, todolist_date;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,10 +44,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         SimpleDateFormat weekdayformat = new SimpleDateFormat("EEE", Locale.getDefault());
         SimpleDateFormat dayformat = new SimpleDateFormat("dd", Locale.getDefault());
         SimpleDateFormat monthformat = new SimpleDateFormat("MM", Locale.getDefault());
+        SimpleDateFormat todayformat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
 
         String weekday = weekdayformat.format(todayTime);
         String day = dayformat.format(todayTime);
         String month = monthformat.format(todayTime);
+        todayDate = todayformat.format(todayTime);
 
         to_do_list = findViewById(R.id.to_do_list);
         listViewAdapter = new ListViewAdapter();
@@ -54,8 +59,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         todolist_count = findViewById(R.id.todolist_count);
         today_month.setText(getMonth(month));
 
-        listViewAdapter.addItem("졸업작품 PPT 제출","10:00 AM");
-        listViewAdapter.addItem("과제 제출","04:00 PM");
+        listViewAdapter.addItem("test","10:00 AM", "D-10");
 
         String todolistcount_str = listViewAdapter.getCount()+" Tasks";
         SpannableStringBuilder spannableStringBuilder_ = new SpannableStringBuilder(todolistcount_str);
@@ -190,7 +194,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.add_list:
                 toggleFab();
                 Intent intent = new Intent(this, NewToDoActivity.class);
-                startActivity(intent);
+                startActivityForResult(intent,1000);
                 break;
             case R.id.complete_list:
                 toggleFab();
@@ -214,5 +218,84 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             complete_list.setClickable(true);
             isFabOpen = true;
         }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(resultCode == RESULT_OK) {
+            switch (requestCode) {
+                case 1000:
+                    todolist_text = data.getStringExtra("todolist_text");
+                    todolist_time = TimeConvert(data.getStringExtra("todolist_time"));
+                    todolist_date = DateConvert(data.getStringExtra("todolist_date"));
+                    listViewAdapter.addItem(todolist_text, todolist_time, todolist_date);
+                    listViewAdapter.notifyDataSetChanged();
+                    String todolistcount_str = listViewAdapter.getCount()+" Tasks";
+                    SpannableStringBuilder spannableStringBuilder_ = new SpannableStringBuilder(todolistcount_str);
+                    spannableStringBuilder_.setSpan(new StyleSpan(Typeface.BOLD), 0, todolistcount_str.indexOf(" "), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                    todolist_count.setText(spannableStringBuilder_);
+                    break;
+            }
+        }
+    }
+
+    public String TimeConvert(String todolist_time) {
+        String ampm = null;
+        String result = null;
+
+        int hour = Integer.parseInt(todolist_time.substring(0,todolist_time.indexOf(":")));
+        int minute = Integer.parseInt(todolist_time.substring(todolist_time.indexOf(":")+1,todolist_time.length()));
+
+        if(hour >= 12) {
+            ampm = "PM";
+            int hour2 = hour - 12;
+            int hour_length = (int)(Math.log10(hour2)+1);
+            int min_length = (int)(Math.log10(minute)+1);
+            if(hour_length == 1) {
+                if(min_length == 1) {
+                    result = "0"+ hour2 + ": 0" + minute + " " + ampm;
+                } else
+                    result = "0"+ hour2 + ":" + minute + " " + ampm;
+            } else {
+                if(min_length == 1) {
+                    result = "0" + hour2 + ": 0" + minute + " " + ampm;
+                } else
+                    result = hour2 + ":" + minute + " " + ampm;
+            }
+        } else {
+            ampm = "AM";
+            int hour_length = (int)(Math.log10(hour)+1);
+            int min_length = (int)(Math.log10(minute)+1);
+            if(hour_length == 1) {
+                if(min_length == 1) {
+                    result = "0"+ hour + ": 0" + minute + " " + ampm;
+                } else
+                    result = "0"+ hour + ":" + minute + " " + ampm;
+            } else {
+                if(min_length == 1) {
+                    result = "0" + hour + ": 0" + minute + " " + ampm;
+                } else
+                    result = hour + ":" + minute + " " + ampm;
+            }
+        }
+
+        return result;
+    }
+
+
+    public String DateConvert(String todolist_date) {
+        SimpleDateFormat simpleDateFormat_ = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            Date firstday = simpleDateFormat_.parse(todayDate);
+            Date secondday = simpleDateFormat_.parse(todolist_date);
+
+            long diff = firstday.getTime() - secondday.getTime();
+            long diffDays = diff / (24*60*60*1000);
+            diffDays_result = "D" + diffDays;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return diffDays_result;
     }
 }

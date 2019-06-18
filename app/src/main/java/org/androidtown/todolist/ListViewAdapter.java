@@ -35,11 +35,13 @@ public class ListViewAdapter extends BaseAdapter {
         CheckBox checkBox = (CheckBox) convertView.findViewById(R.id.list_checkbox);
         TextView todolist_text = (TextView) convertView.findViewById(R.id.to_do_list_text);
         TextView todolisttime_text = (TextView) convertView.findViewById(R.id.to_do_list_time_text);
+        TextView todolistdate_text = (TextView) convertView.findViewById(R.id.to_do_list_d_day_text);
 
         ListViewItem listViewItem = listViewItemArrayList.get(position);
 
         todolist_text.setText(listViewItem.getTo_do_list());
         todolisttime_text.setText(listViewItem.getTo_do_list_time());
+        todolistdate_text.setText(listViewItem.getTo_do_list_date());
 
         return convertView;
     }
@@ -54,11 +56,12 @@ public class ListViewAdapter extends BaseAdapter {
         return listViewItemArrayList.get(position);
     }
 
-    public void addItem(String todolist, String todolist_time) {
+    public void addItem(String todolist, String todolist_time, String todolist_date) {
         ListViewItem item = new ListViewItem();
 
         item.setTo_do_list(todolist);
         item.setTo_do_list_time(todolist_time);
+        item.setTo_do_list_date(todolist_date);
 
         listViewItemArrayList.add(item);
     }

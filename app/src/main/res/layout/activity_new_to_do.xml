@@ -37,7 +37,7 @@
             android:text="TO DO"
             android:textColor="@color/mainblue"
             android:gravity="center"
-            app:scale_top="200"
+            app:scale_top="190"
             app:scale_left="50"
             app:scale_width="200"
             app:scale_height="100"
@@ -51,7 +51,7 @@
             android:textColor="#777777"
             app:scale_width="740"
             app:scale_height="110"
-            app:scale_top="200"
+            app:scale_top="190"
             app:scale_left="280"
             app:scale_textsize="45"/>
 
