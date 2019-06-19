@@ -59,8 +59,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         todolist_count = findViewById(R.id.todolist_count);
         today_month.setText(getMonth(month));
 
-        listViewAdapter.addItem("test","10:00 AM", "D-10");
-
         String todolistcount_str = listViewAdapter.getCount()+" Tasks";
         SpannableStringBuilder spannableStringBuilder_ = new SpannableStringBuilder(todolistcount_str);
         spannableStringBuilder_.setSpan(new StyleSpan(Typeface.BOLD), 0, todolistcount_str.indexOf(" "), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
@@ -246,34 +244,49 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         int hour = Integer.parseInt(todolist_time.substring(0,todolist_time.indexOf(":")));
         int minute = Integer.parseInt(todolist_time.substring(todolist_time.indexOf(":")+1,todolist_time.length()));
 
-        if(hour >= 12) {
+        if(hour > 12) {
             ampm = "PM";
             int hour2 = hour - 12;
             int hour_length = (int)(Math.log10(hour2)+1);
             int min_length = (int)(Math.log10(minute)+1);
             if(hour_length == 1) {
-                if(min_length == 1) {
-                    result = "0"+ hour2 + ": 0" + minute + " " + ampm;
+                if(min_length == 1 || hour2 == 0 || minute == 0) {
+                    result = "0"+ hour2 + ":0" + minute + " " + ampm;
                 } else
                     result = "0"+ hour2 + ":" + minute + " " + ampm;
             } else {
-                if(min_length == 1) {
-                    result = "0" + hour2 + ": 0" + minute + " " + ampm;
+                if(min_length == 1 || minute == 0) {
+                    result = hour2 + ":0" + minute + " " + ampm;
                 } else
                     result = hour2 + ":" + minute + " " + ampm;
             }
+        } else if(hour == 12) {
+            ampm = "PM";
+            int hour2 = hour - 12;
+            int min_length = (int)(Math.log10(minute)+1);
+            if(min_length == 1 || hour2 == 0 || minute == 0) {
+                result = "0"+ hour2 + ":0" + minute + " " + ampm;
+            } else
+                result = "0"+ hour2 + ":" + minute + " " + ampm;
+        } else if(hour == 0) {
+            ampm = "AM";
+            int min_length = (int)(Math.log10(minute)+1);
+            if(min_length == 1 || minute == 0) {
+                result = "0"+ hour + ":0" + minute + " " + ampm;
+            } else
+                result = "0"+ hour + ":" + minute + " " + ampm;
         } else {
             ampm = "AM";
             int hour_length = (int)(Math.log10(hour)+1);
             int min_length = (int)(Math.log10(minute)+1);
             if(hour_length == 1) {
-                if(min_length == 1) {
-                    result = "0"+ hour + ": 0" + minute + " " + ampm;
+                if(min_length == 1 || hour == 0 || minute == 0) {
+                    result = "0"+ hour + ":0" + minute + " " + ampm;
                 } else
                     result = "0"+ hour + ":" + minute + " " + ampm;
             } else {
-                if(min_length == 1) {
-                    result = "0" + hour + ": 0" + minute + " " + ampm;
+                if(min_length == 1 || minute == 0) {
+                    result = hour + ":0" + minute + " " + ampm;
                 } else
                     result = hour + ":" + minute + " " + ampm;
             }
