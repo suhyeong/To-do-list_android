@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
+    android:id="@+id/main_layout"
     tools:ignore="MissingPrefix">
 
     <com.ssomai.android.scalablelayout.ScalableLayout
@@ -70,6 +71,7 @@
             android:id="@+id/to_do_list"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:choiceMode="multipleChoice"
             app:scale_width="1080"
             app:scale_height="1920"
             app:scale_top="420" />

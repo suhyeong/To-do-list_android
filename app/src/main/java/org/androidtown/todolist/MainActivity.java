@@ -2,6 +2,7 @@ package org.androidtown.todolist;
 
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -13,6 +14,7 @@ import android.text.style.StyleSpan;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,6 +31,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     ListViewAdapter listViewAdapter;
     FloatingActionButton open_menu, add_list, complete_list;
     String todayDate, diffDays_result;
+    ConstraintLayout layout;
 
     private Animation fab_open, fab_close, rotate_dropdown, rotate_dropup;
     private boolean isFabOpen = false;
@@ -40,6 +43,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        layout = findViewById(R.id.main_layout);
         Date todayTime = Calendar.getInstance().getTime();
         SimpleDateFormat weekdayformat = new SimpleDateFormat("EEE", Locale.getDefault());
         SimpleDateFormat dayformat = new SimpleDateFormat("dd", Locale.getDefault());
@@ -54,6 +58,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         to_do_list = findViewById(R.id.to_do_list);
         listViewAdapter = new ListViewAdapter();
         to_do_list.setAdapter(listViewAdapter);
+        to_do_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+            }
+        });
+
         today_weekday = findViewById(R.id.today_weekday);
         today_month = findViewById(R.id.today_month);
         todolist_count = findViewById(R.id.todolist_count);
