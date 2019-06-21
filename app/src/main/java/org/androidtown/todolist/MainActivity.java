@@ -14,6 +14,7 @@ import android.text.style.StyleSpan;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -58,10 +59,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         to_do_list = findViewById(R.id.to_do_list);
         listViewAdapter = new ListViewAdapter();
         to_do_list.setAdapter(listViewAdapter);
+        to_do_list.setChoiceMode(AbsListView.CHOICE_MODE_MULTIPLE);
         to_do_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
             }
         });
 
@@ -207,6 +208,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.complete_list:
                 toggleFab();
+                Intent complete_intent = new Intent(this, CompleteToDoActivity.class);
+                startActivity(complete_intent);
                 break;
         }
     }

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CompleteToDoActivity"
+    tools:ignore="MissingPrefix">
+
+    <com.ssomai.android.scalablelayout.ScalableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints"
+        app:scale_base_width="1080"
+        app:scale_base_height="1920">
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/mainheader"
+        app:scale_width="1080"
+        app:scale_height="350"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="COMPLETE TO DO"
+            android:fontFamily="sans-serif-thin"
+            android:textColor="#556fb5"
+            app:scale_textsize="90"
+            app:scale_width="750"
+            app:textview_wrapcontent_direction="bottom"
+            app:textview_wrapcontent_resizesurrounded="true"
+            app:textview_wrapcontent_movesiblings="true"
+            app:scale_top="65"
+            app:scale_left="60"/>
+
+    </com.ssomai.android.scalablelayout.ScalableLayout>
+
+</android.support.constraint.ConstraintLayout>
