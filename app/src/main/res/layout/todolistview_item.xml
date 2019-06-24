@@ -30,7 +30,7 @@
             android:id="@+id/to_do_list_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="으아아아아아아아"
+            android:text="test"
             android:gravity="center_vertical"
             app:scale_width="680"
             app:scale_left="160"
@@ -63,6 +63,16 @@
             app:scale_top="105"
             app:scale_width="220"
             app:scale_height="65" />
+
+        <View
+            android:id="@+id/listview_check_anim"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#EAEAEA"
+            app:scale_width="650"
+            app:scale_height="5"
+            app:scale_left="160"
+            app:scale_top="100"/>
 
     </com.ssomai.android.scalablelayout.ScalableLayout>
 
