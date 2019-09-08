@@ -54,10 +54,14 @@ public class ListViewAdapter extends BaseAdapter {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked) {
+                    Animation listanim = AnimationUtils.loadAnimation(context, R.anim.listview_check);
                     todolist_check_anim.setVisibility(View.VISIBLE);
+                    todolist_check_anim.setAnimation(listanim);
                     todolist_text.setTextColor(Color.LTGRAY);
                 } else {
+                    Animation listanimun = AnimationUtils.loadAnimation(context, R.anim.listview_uncheck);
                     todolist_check_anim.setVisibility(View.INVISIBLE);
+                    todolist_check_anim.setAnimation(listanimun);
                     todolist_text.setTextColor(nomalcolor);
                 }
             }
