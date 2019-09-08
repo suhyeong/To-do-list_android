@@ -1,6 +1,8 @@
 package org.androidtown.todolist;
 
 import android.content.Context;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,29 +39,29 @@ public class ListViewAdapter extends BaseAdapter {
         }
 
         CheckBox checkBox = (CheckBox) convertView.findViewById(R.id.list_checkbox);
-        TextView todolist_text = (TextView) convertView.findViewById(R.id.to_do_list_text);
+        final TextView todolist_text = convertView.findViewById(R.id.to_do_list_text);
         TextView todolisttime_text = (TextView) convertView.findViewById(R.id.to_do_list_time_text);
         TextView todolistdate_text = (TextView) convertView.findViewById(R.id.to_do_list_d_day_text);
-        View todolist_check_anim = (View) convertView.findViewById(R.id.listview_check_anim);
+        final View todolist_check_anim = (View) convertView.findViewById(R.id.listview_check_anim);
 
         final ListViewItem listViewItem = listViewItemArrayList.get(position);
 
         todolist_text.setText(listViewItem.getTo_do_list());
+        final ColorStateList nomalcolor = todolist_text.getTextColors();
         todolisttime_text.setText(listViewItem.getTo_do_list_time());
         todolistdate_text.setText(listViewItem.getTo_do_list_date());
         checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-
+                if(isChecked) {
+                    todolist_check_anim.setVisibility(View.VISIBLE);
+                    todolist_text.setTextColor(Color.LTGRAY);
+                } else {
+                    todolist_check_anim.setVisibility(View.INVISIBLE);
+                    todolist_text.setTextColor(nomalcolor);
+                }
             }
         });
-
-        listview_check = AnimationUtils.loadAnimation(context, R.anim.listview_check);
-        if(listViewItem.getTo_do_list_checkbox().isChecked()) {
-            todolist_check_anim.startAnimation(listview_check);
-        } else {
-            todolist_check_anim.setVisibility(View.INVISIBLE);
-        }
 
         return convertView;
     }

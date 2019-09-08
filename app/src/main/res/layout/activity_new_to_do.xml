@@ -68,7 +68,7 @@
             app:mcv_titleAnimationOrientation="horizontal"
             app:mcv_leftArrowMask="@drawable/ic_navigate_before_gray_24dp"
             app:mcv_rightArrowMask="@drawable/ic_navigate_next_gray_24dp"
-            app:mcv_arrowColor="#AAAAAA"
+            app:mcv_arrowColor="@color/gray"
             app:mcv_tileSize="match_parent"
             app:mcv_firstDayOfWeek="monday"/>
 

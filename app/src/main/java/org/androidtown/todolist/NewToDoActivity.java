@@ -51,13 +51,17 @@ public class NewToDoActivity extends AppCompatActivity implements TimePicker.OnT
 
         materialCalendarView = findViewById(R.id.to_do_calendar);
         materialCalendarView.setTopbarVisible(true);
+        materialCalendarView.setDateSelected(new Date(System.currentTimeMillis()), true);
+        //오늘의 날짜 기본으로 선택되어 출력하도록 설정
 
         CharSequence[] charSequences = new CharSequence[]{"SUN","MON","TUE","WED","THE","FRI","SAT"};
         materialCalendarView.setWeekDayLabels(charSequences);
+        //일주일 라벨을 커스텀설정
 
         SimpleDateFormat title_simpleDateFormat = new SimpleDateFormat("MMMM yyyy", Locale.ENGLISH);
         DateFormatTitleFormatter dateFormatTitleFormatter = new DateFormatTitleFormatter(title_simpleDateFormat);
         materialCalendarView.setTitleFormatter(dateFormatTitleFormatter);
+        //달력의 타이트르을 MMMM yyyy 형태로 커스텀설정
 
         timePicker = findViewById(R.id.to_do_time);
         timePicker.setOnTimeChangedListener(this);
