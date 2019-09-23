@@ -35,6 +35,15 @@
             app:scale_top="65"
             app:scale_left="60"/>
 
+        <ListView
+            android:id="@+id/complete_to_do_list"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:choiceMode="multipleChoice"
+            app:scale_width="1080"
+            app:scale_height="1920"
+            app:scale_top="420" />
+
     </com.ssomai.android.scalablelayout.ScalableLayout>
 
 </android.support.constraint.ConstraintLayout>

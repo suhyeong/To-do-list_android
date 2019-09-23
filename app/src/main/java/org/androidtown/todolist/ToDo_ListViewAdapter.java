@@ -15,11 +15,10 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class ListViewAdapter extends BaseAdapter {
+public class ToDo_ListViewAdapter extends BaseAdapter {
     private ArrayList<ListViewItem> listViewItemArrayList = new ArrayList<ListViewItem>();
-    private Animation listview_check;
 
-    public ListViewAdapter() {
+    public ToDo_ListViewAdapter() {
 
     }
 
@@ -40,14 +39,15 @@ public class ListViewAdapter extends BaseAdapter {
 
         CheckBox checkBox = (CheckBox) convertView.findViewById(R.id.list_checkbox);
         final TextView todolist_text = convertView.findViewById(R.id.to_do_list_text);
-        TextView todolisttime_text = (TextView) convertView.findViewById(R.id.to_do_list_time_text);
-        TextView todolistdate_text = (TextView) convertView.findViewById(R.id.to_do_list_d_day_text);
+        final TextView todolisttime_text = (TextView) convertView.findViewById(R.id.to_do_list_time_text);
+        final TextView todolistdate_text = (TextView) convertView.findViewById(R.id.to_do_list_d_day_text);
         final View todolist_check_anim = (View) convertView.findViewById(R.id.listview_check_anim);
 
         final ListViewItem listViewItem = listViewItemArrayList.get(position);
 
         todolist_text.setText(listViewItem.getTo_do_list());
         final ColorStateList nomalcolor = todolist_text.getTextColors();
+        final ColorStateList date_nomalcolor = todolistdate_text.getTextColors();
         todolisttime_text.setText(listViewItem.getTo_do_list_time());
         todolistdate_text.setText(listViewItem.getTo_do_list_date());
         checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -58,11 +58,15 @@ public class ListViewAdapter extends BaseAdapter {
                     todolist_check_anim.setVisibility(View.VISIBLE);
                     todolist_check_anim.setAnimation(listanim);
                     todolist_text.setTextColor(Color.LTGRAY);
+                    todolisttime_text.setTextColor(Color.LTGRAY);
+                    todolistdate_text.setTextColor(Color.LTGRAY);
                 } else {
                     Animation listanimun = AnimationUtils.loadAnimation(context, R.anim.listview_uncheck);
                     todolist_check_anim.setVisibility(View.INVISIBLE);
                     todolist_check_anim.setAnimation(listanimun);
                     todolist_text.setTextColor(nomalcolor);
+                    todolisttime_text.setTextColor(date_nomalcolor);
+                    todolistdate_text.setTextColor(date_nomalcolor);
                 }
             }
         });

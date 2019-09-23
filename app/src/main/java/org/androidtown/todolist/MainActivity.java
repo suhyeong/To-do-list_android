@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Spannable;
@@ -18,7 +17,6 @@ import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -30,7 +28,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     TextView today_weekday, today_month, todolist_count;
     ListView to_do_list;
-    ListViewAdapter listViewAdapter;
+    ToDo_ListViewAdapter listViewAdapter;
     FloatingActionButton open_menu, add_list, complete_list;
     String todayDate, diffDays_result;
     ConstraintLayout layout;
@@ -60,7 +58,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         todayDate = todayformat.format(todayTime);
 
         to_do_list = findViewById(R.id.to_do_list);
-        listViewAdapter = new ListViewAdapter();
+        listViewAdapter = new ToDo_ListViewAdapter();
         to_do_list.setAdapter(listViewAdapter);
         to_do_list.setChoiceMode(AbsListView.CHOICE_MODE_MULTIPLE);
         to_do_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
