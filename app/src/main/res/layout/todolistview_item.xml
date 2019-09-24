@@ -32,7 +32,7 @@
             android:layout_height="wrap_content"
             android:text="test"
             android:gravity="center_vertical"
-            app:scale_width="680"
+            app:scale_width="650"
             app:scale_left="160"
             app:scale_height="100"
             app:scale_top="50"

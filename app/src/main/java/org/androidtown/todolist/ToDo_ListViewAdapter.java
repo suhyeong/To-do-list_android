@@ -1,8 +1,11 @@
 package org.androidtown.todolist;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
+import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +14,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -28,7 +32,7 @@ public class ToDo_ListViewAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(int position, View convertView, final ViewGroup parent) {
         final int pos = position;
         final Context context = parent.getContext();
 
@@ -50,6 +54,7 @@ public class ToDo_ListViewAdapter extends BaseAdapter {
         final ColorStateList date_nomalcolor = todolistdate_text.getTextColors();
         todolisttime_text.setText(listViewItem.getTo_do_list_time());
         todolistdate_text.setText(listViewItem.getTo_do_list_date());
+
         checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -60,6 +65,15 @@ public class ToDo_ListViewAdapter extends BaseAdapter {
                     todolist_text.setTextColor(Color.LTGRAY);
                     todolisttime_text.setTextColor(Color.LTGRAY);
                     todolistdate_text.setTextColor(Color.LTGRAY);
+
+                    /*
+                    Intent intent = new Intent();
+                    Bundle bundle = new Bundle();
+                    bundle.putString("todolist_do", todolist_text.getText().toString());
+                    bundle.putString("todolist_time", todolisttime_text.getText().toString());
+                    bundle.putString("todolist_date", todolistdate_text.getText().toString());
+                    intent.putExtras(bundle);
+                    */
                 } else {
                     Animation listanimun = AnimationUtils.loadAnimation(context, R.anim.listview_uncheck);
                     todolist_check_anim.setVisibility(View.INVISIBLE);
@@ -94,4 +108,7 @@ public class ToDo_ListViewAdapter extends BaseAdapter {
         listViewItemArrayList.add(item);
     }
 
+    public void removeItem(int position) {
+        listViewItemArrayList.remove(position);
+    }
 }

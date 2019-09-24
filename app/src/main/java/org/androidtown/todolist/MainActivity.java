@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Spannable;
@@ -61,10 +62,36 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         listViewAdapter = new ToDo_ListViewAdapter();
         to_do_list.setAdapter(listViewAdapter);
         to_do_list.setChoiceMode(AbsListView.CHOICE_MODE_MULTIPLE);
+
+        /*
         to_do_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //listViewAdapter.getItem(position).
+            }
+        });
+        */
+
+        to_do_list.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
+                Snackbar.make(view, "Do you want to delete this?", Snackbar.LENGTH_LONG).setAction("YES", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        int count = listViewAdapter.getCount();
+                        if(count > 0) {
+                            if(position > -1 && position < count) {
+                                listViewAdapter.removeItem(position);
+                                listViewAdapter.notifyDataSetChanged();
+                                String todolistcount_str = listViewAdapter.getCount()+" Tasks";
+                                SpannableStringBuilder spannableStringBuilder_ = new SpannableStringBuilder(todolistcount_str);
+                                spannableStringBuilder_.setSpan(new StyleSpan(Typeface.BOLD), 0, todolistcount_str.indexOf(" "), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                                todolist_count.setText(spannableStringBuilder_);
+
+                            }
+                        }
+                    }
+                }).show();
+                return true;
             }
         });
 

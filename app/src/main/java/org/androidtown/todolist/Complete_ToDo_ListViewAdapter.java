@@ -37,11 +37,11 @@ public class Complete_ToDo_ListViewAdapter extends BaseAdapter {
             convertView = inflater.inflate(R.layout.todolistview_item, parent, false);
         }
 
-        CheckBox checkBox = (CheckBox) convertView.findViewById(R.id.list_checkbox);
+        //CheckBox checkBox = (CheckBox) convertView.findViewById(R.id.list_checkbox);
         final TextView todolist_text = convertView.findViewById(R.id.to_do_list_text);
         final TextView todolisttime_text = (TextView) convertView.findViewById(R.id.to_do_list_time_text);
         final TextView todolistdate_text = (TextView) convertView.findViewById(R.id.to_do_list_d_day_text);
-        final View todolist_check_anim = (View) convertView.findViewById(R.id.listview_check_anim);
+        //final View todolist_check_anim = (View) convertView.findViewById(R.id.listview_check_anim);
 
         final ListViewItem listViewItem = listViewItemArrayList.get(position);
 
@@ -49,6 +49,7 @@ public class Complete_ToDo_ListViewAdapter extends BaseAdapter {
         todolisttime_text.setText(listViewItem.getTo_do_list_time());
         todolistdate_text.setText(listViewItem.getTo_do_list_date());
 
+        /*
         checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -57,6 +58,7 @@ public class Complete_ToDo_ListViewAdapter extends BaseAdapter {
                 }
             }
         });
+        */
 
         return convertView;
     }
